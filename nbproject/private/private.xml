@@ -3,7 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Andrade/Documents/NetBeansProjects/ProjetoPOO/src/com/projetopoo/view/projetoPOO.java</file>
+            <file>file:/C:/Users/Andrade/Documents/NetBeansProjects/ProjetoPOO/src/com/projetopoo/controler/ItemController.java</file>
+            <file>file:/C:/Users/Andrade/Documents/NetBeansProjects/ProjetoPOO/src/com/projetopoo/controler/CompraController.java</file>
+            <file>file:/C:/Users/Andrade/Documents/NetBeansProjects/ProjetoPOO/src/com/projetopoo/controler/FuncionarioController.java</file>
+            <file>file:/C:/Users/Andrade/Documents/NetBeansProjects/ProjetoPOO/src/com/projetopoo/controler/CaixaController.java</file>
+            <file>file:/C:/Users/Andrade/Documents/NetBeansProjects/ProjetoPOO/src/com/projetopoo/controler/ConsultarProdutoController.java</file>
         </group>
     </open-files>
 </project-private>

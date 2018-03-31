@@ -10,8 +10,8 @@ import com.projetopoo.model.FuncionarioModel;
 
 public class FuncionarioController {
     public static void main(String[] args) {
-        /*FuncionarioDAO funcionarioDao = new FuncionarioDAO();
+        FuncionarioDAO funcionarioDao = new FuncionarioDAO();
         FuncionarioModel func = new FuncionarioModel("cago", 10, "Bruno", "111", "44444", "987");
-        funcionarioDao.cadastrarFuncionario(func);*/
+        funcionarioDao.cadastrarFuncionario(func);
     }
 }
