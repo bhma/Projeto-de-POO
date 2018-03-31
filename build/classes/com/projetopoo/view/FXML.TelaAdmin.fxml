@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="438.0" prefWidth="726.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projetopoo.view.TelaAdminControllerView">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projetopoo.view.TelaAdminControllerView">
    <children>
       <Button fx:id="btFuncionario" layoutX="253.0" layoutY="133.0" mnemonicParsing="false" text="FUNCIONARIO" />
       <Button fx:id="btFinanceiro" layoutX="258.0" layoutY="188.0" mnemonicParsing="false" onAction="#startFluxoDeCaixa" text="FINANCEIRO" />

@@ -6,9 +6,12 @@
 package com.projetopoo.view.fluxodecaixaview;
 
 import com.projetopoo.view.fluxodecaixaview.MainFluxoDeCaixa;
+import com.projetopoo.view.projetoPOO;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 
 /**
  * FXML Controller class
@@ -17,9 +20,15 @@ import javafx.fxml.Initializable;
  */
 public class TelaDeDespesasControllerView implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
+    @FXML
+    private Button btTodasDespesa;
+
+    @FXML
+    private Button btInserirNovaDespesa;
+
+    @FXML
+    private Button btVoltar;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -30,6 +39,10 @@ public class TelaDeDespesasControllerView implements Initializable {
     }
     public void startListarDespesas(){
         MainFluxoDeCaixa.trocaTela("ListarDespesaView");
+    }
+    
+    public void startFluxoDeCaixa(){
+         projetoPOO.trocaTela("fluxoDeCaixa");
     }
     
 }

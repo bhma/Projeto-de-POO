@@ -5,6 +5,7 @@
  */
 package com.projetopoo.view.fluxodecaixaview;
 
+import com.projetopoo.view.projetoPOO;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -35,6 +36,10 @@ public class TelaReceitaOpcoesControllerView implements Initializable {
     
      public void startListarVendas(){
         MainFluxoDeCaixa.trocaTela("ListarReceitaLsView");
+    }
+     
+    public void chamaFluxoDeCaixa(){
+        projetoPOO.trocaTela("fluxoDeCaixa");
     }
     
 }

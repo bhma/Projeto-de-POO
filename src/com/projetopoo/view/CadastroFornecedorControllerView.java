@@ -24,7 +24,7 @@ public class CadastroFornecedorControllerView {
         // Codigo que Bruno fez
         if(tfCNPJ.getText() != null && tfRazaoS.getText() != null){
             ArrayList<FornecedorModel> c = FornecedorController.restaurarFornecedor();// c eh o array de fornecedor
-            FornecedorModel novoForn = new FornecedorModel(tfCNPJ.getText(), tfRazaoS.getText(), FornecedorController.GeraIdFornecedor());
+            FornecedorModel novoForn = new FornecedorModel(tfCNPJ.getText(), Integer.parseInt(tfRazaoS.getText()), FornecedorController.GeraIdFornecedor());
             if(c.contains(novoForn)){
                 Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
                 dialogoInfo.setTitle("AVISO");

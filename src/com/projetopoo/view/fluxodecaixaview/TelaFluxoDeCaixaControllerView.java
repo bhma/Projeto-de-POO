@@ -6,6 +6,7 @@
 package com.projetopoo.view.fluxodecaixaview;
 
 import com.projetopoo.view.fluxodecaixaview.MainFluxoDeCaixa;
+import com.projetopoo.view.projetoPOO;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -40,9 +41,14 @@ public class TelaFluxoDeCaixaControllerView implements Initializable {
     @FXML
     private Button btReceitas;
     
+    @FXML
+    private Button btVoltarFluxoCaixa;
+    
    
    @FXML
     private ImageView imLogoFluxoCaixa;
+   @FXML
+   private Button btVoltarReceita;
 
     /**
      * Initializes the controller class.
@@ -59,6 +65,10 @@ public class TelaFluxoDeCaixaControllerView implements Initializable {
     }
     public void startReceitasMenu(){
          MainFluxoDeCaixa.trocaTela("receitasMenuView");
+    }
+    
+    public void chamaAdmin(){
+        projetoPOO.trocaTela("telaAdmin");
     }
     
 }
