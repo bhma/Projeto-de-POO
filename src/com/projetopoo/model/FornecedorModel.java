@@ -4,10 +4,10 @@ import java.io.Serializable;
 
 public class FornecedorModel implements Serializable{
     private String cnpj;
-    private String idForn;
+    private int idForn;
     private String razaoSocial;
 
-    public FornecedorModel(String cnpj, String razaoSocial,  String idForn) {
+    public FornecedorModel(String cnpj, int idForn, String razaoSocial) {
         this.cnpj = cnpj;
         this.idForn = idForn;
         this.razaoSocial = razaoSocial;
@@ -21,11 +21,11 @@ public class FornecedorModel implements Serializable{
         this.cnpj = cnpj;
     }
 
-    public String getIdForn() {
+    public int getIdForn() {
         return idForn;
     }
 
-    public void setIdForn(String idForn) {
+    public void setIdForn(int idForn) {
         this.idForn = idForn;
     }
 

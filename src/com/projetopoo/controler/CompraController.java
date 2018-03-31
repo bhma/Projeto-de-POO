@@ -4,17 +4,32 @@
  * and open the template in the editor.
  */
 package com.projetopoo.controler;
+
+
 import com.projetopoo.dao.CompraDAO;
 import java.util.ArrayList;
 import com.projetopoo.model.CompraModel;
 
+/**
+ *
+ * @author Andrade
+ */
+
+
 public class CompraController {
-    private static ArrayList<CompraModel> restaurarCompras(){
+   
+    public static ArrayList<CompraModel> restaurarCompras(){
         ArrayList<CompraModel> c = new ArrayList();// c eh o array de compras
         CompraDAO cd = new CompraDAO();//cd onde está chamando os metodos do DAO
         c =cd.restaurarCompra();
         return c;
     }
+    /* public  ArrayList<CompraModel> recuperarCompras(){
+        ArrayList<CompraModel> compras = new ArrayList();// c eh o array de compras
+        CompraDAO cd = new CompraDAO();//cd onde está chamando os metodos do DAO
+        c =cd.restaurarCompra();
+        return c;
+    }*/
     public static void removerCompra(String id){
         int tamanho;
         CompraModel compra;

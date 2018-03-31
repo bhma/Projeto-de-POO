@@ -29,6 +29,9 @@ public class TelaAdminControllerView implements Initializable {
 
     @FXML
     private Button btVoltarAdmin;
+    
+    @FXML
+    private Button btEstoque;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -37,6 +40,12 @@ public class TelaAdminControllerView implements Initializable {
     
     public void chamaTelaInicial(){
         projetoPOO.trocaTela("principal");
+    }
+    public void startFluxoDeCaixa(){
+         projetoPOO.trocaTela("fluxoDeCaixa");
+    }
+     public void startEstoque(){
+         projetoPOO.trocaTela("estoqueMenu");
     }
     
 }

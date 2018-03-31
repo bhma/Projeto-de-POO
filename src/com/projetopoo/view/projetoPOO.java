@@ -1,7 +1,11 @@
 
 package com.projetopoo.view;
+import com.projetopoo.view.fluxodecaixaview.MainFluxoDeCaixa;
+import com.projetopoo.view.itemview.MainItem;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,6 +28,7 @@ public class projetoPOO extends Application implements Initializable{
     private static Scene consultarProdutoScene;
     private static Scene telaTroco;
     private static Scene telaAdmin;
+    private static Scene estoqueMenu;
     @Override
     public void start(Stage primaryStage) throws Exception {
         stage= primaryStage;
@@ -41,6 +46,8 @@ public class projetoPOO extends Application implements Initializable{
         telaTroco = new Scene(fxmlTelaTroco);
         Parent fxmlTelaAdmin = FXMLLoader.load(getClass().getResource("FXML.TelaAdmin.fxml"));
         telaAdmin = new Scene(fxmlTelaAdmin);
+         Parent fxmlTelaEstoque = FXMLLoader.load(getClass().getResource("FXML.EstoqueMenu.fxml"));
+       estoqueMenu = new Scene(fxmlTelaEstoque);
         
         stage.setScene(principalScene);
         stage.show();
@@ -68,9 +75,33 @@ public class projetoPOO extends Application implements Initializable{
             case"telaTroco":
                 stage.setScene(telaTroco);
                 break;
+            case "estoqueMenu":
+                 stage.setScene(estoqueMenu);
+                break;
             case"telaAdmin":
                 stage.setScene(telaAdmin);
                 break;
+             case "fluxoDeCaixa":
+                    MainFluxoDeCaixa fluxoDeCaixa = new MainFluxoDeCaixa();
+                     {
+                 try {
+                fluxoDeCaixa.start(stage);
+                  } catch (Exception ex) {
+                Logger.getLogger(projetoPOO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+             }
+                     break;
+                     case"ItemMenu":
+                           MainItem menuItem = new MainItem();
+         
+        {
+            try {
+                menuItem.start(stage);
+            } catch (Exception ex) {
+                Logger.getLogger(projetoPOO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        break;
         }
     
     }
@@ -86,7 +117,7 @@ public class projetoPOO extends Application implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

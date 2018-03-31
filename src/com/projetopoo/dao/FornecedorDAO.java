@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.projetopoo.dao;
 
 import com.projetopoo.model.FornecedorModel;
@@ -18,25 +22,32 @@ import java.util.logging.Logger;
  * @author dkaus
  */
 public class FornecedorDAO {
-    ArrayList<FornecedorModel> list = new ArrayList();
+     ArrayList<FornecedorModel> list = new ArrayList();
+    
+    
     public void inserir(FornecedorModel fornecedor){//Inseri um novo funcionario na lista
       FornecedorDAO dao = new FornecedorDAO();
-      list = dao.recuperar();//recupera a lista do arquivo
-      list.add(fornecedor);
-      try{
-            FileOutputStream saveFile = new FileOutputStream("CadastroFornecedor.txt");
-            ObjectOutputStream stream = new ObjectOutputStream(saveFile);//instancia o objeto de gravação
-            stream.writeObject(list);//salva a lista no arquivo
-            stream.close();//fecha objeto de gravação
-        }catch(FileNotFoundException e){
-            e.printStackTrace();
-        }catch (IOException ex) {
-            Logger.getLogger(FornecedorDAO.class.getName()).log(Level.SEVERE, null, ex);
+       list = dao.recuperar();//recupera a lista do arquivo
+        if(list == null){//testar
         }
+        list.add(fornecedor);
+       
+          try{
+             FileOutputStream saveFile = new FileOutputStream("CadastroFornecedor.txt");
+             ObjectOutputStream stream = new ObjectOutputStream(saveFile);//instancia o objeto de gravação
+             stream.writeObject(list);//salva a lista no arquivo
+             stream.close();//fecha objeto de gravação
+              
+               }catch(FileNotFoundException e){
+                e.printStackTrace();
+     
+    }    catch (IOException ex) {
+             Logger.getLogger(FornecedorDAO.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }
     
     public ArrayList<FornecedorModel> recuperar(){//Recupera lista
-        if(new File("CadastroFornecedor.txt").canRead() == true){
+        if(new File("CadastroFornecedor.txt").canRead() == true){ // se o arrquivo existir
         try{
              FileInputStream restFile = new FileInputStream("CadastroFornecedor.txt");
              ObjectInputStream stream = new ObjectInputStream(restFile);            
@@ -52,7 +63,7 @@ public class FornecedorDAO {
                 Logger.getLogger(FornecedorDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    else{
+    else{// se o arquivo não existir
             try{
              FileOutputStream saveFile = new FileOutputStream("CadastroFornecedor.txt");
              ObjectOutputStream stream = new ObjectOutputStream(saveFile);//instancia o objeto de gravação

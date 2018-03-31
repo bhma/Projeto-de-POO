@@ -1,11 +1,13 @@
 package com.projetopoo.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public abstract class ProdutoModel implements Serializable{
     private String marca;
     private String tipo;
     private String validade;
+    private ArrayList<FornecedorModel> fornecedor;
 
     public ProdutoModel(String validade) {
         this.validade = validade;

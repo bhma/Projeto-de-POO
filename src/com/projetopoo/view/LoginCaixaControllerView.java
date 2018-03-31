@@ -1,39 +1,27 @@
 
 package com.projetopoo.view;
 
-import com.projetopoo.model.MaskTextField;
-import java.net.URL;
-import java.util.ResourceBundle;
+import com.projetopoo.view.projetoPOO;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 
-public class LoginCaixaControllerView implements Initializable{
+public class LoginCaixaControllerView {
 
     @FXML
-    private MaskTextField tfIdFuncionario;
+    private TextField tfIdFuncionario;
 
     @FXML
     private PasswordField tfSenha;
 
     @FXML
-    private MaskTextField tfIdCaixa;
+    private TextField tfIdCaixa;
     
     @FXML
     private Button btEntrar;
     
-    public void chamaCaixa(){
+    public void ChamaCaixa(){
         projetoPOO.trocaTela("caixa");
-    }
-    
-    public void chamaTelaInicial(){
-        projetoPOO.trocaTela("principal");
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        tfIdFuncionario.setMask("NNNN");
-        tfIdCaixa.setMask("NNNN");
     }
 }

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="427.0" prefWidth="606.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projetopoo.view.fluxodecaixaview.TelaDespesaListarControllerView">
+   <children>
+      <TextField fx:id="tfDescricao" layoutX="24.0" layoutY="336.0" prefHeight="26.0" prefWidth="218.0" promptText="DESCRIÇÃO" />
+      <Button fx:id="btAlterar" layoutX="376.0" layoutY="386.0" mnemonicParsing="false" onAction="#alterarItemTableViewDebitos" prefHeight="18.0" prefWidth="94.0" text="ALTERAR" textAlignment="CENTER" textFill="#c5b311">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="btRemover" layoutX="265.0" layoutY="386.0" mnemonicParsing="false" onAction="#removerItemTableViewDebitos" prefHeight="18.0" prefWidth="94.0" text="REMOVER" textAlignment="CENTER" textFill="#ea0202">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="btVoltar" layoutX="487.0" layoutY="386.0" mnemonicParsing="false" onAction="#backToMenuDespesa" prefHeight="18.0" prefWidth="94.0" text="VOLTAR" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="btSalvar" layoutX="147.0" layoutY="386.0" mnemonicParsing="false" onAction="#salvarTableViewDebitos" prefHeight="18.0" prefWidth="94.0" text="SALVAR" textAlignment="CENTER" textFill="#41bd08">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <DatePicker fx:id="dpData" layoutX="265.0" layoutY="336.0" prefHeight="26.0" prefWidth="150.0" promptText="DATA" />
+      <TextField fx:id="tfValor" layoutX="432.0" layoutY="336.0" prefHeight="26.0" prefWidth="149.0" promptText="VALOR R$" />
+      <TableView fx:id="tableViewDebitos" layoutX="24.0" layoutY="14.0" prefHeight="299.0" prefWidth="557.0">
+         <columns>
+            <TableColumn fx:id="tableColumnData" prefWidth="110.4000244140625" text="DATA" />
+            <TableColumn fx:id="tableColumnDescricao" prefWidth="335.2000732421875" text="DESCRIÇÃO" />
+            <TableColumn fx:id="tableColumnValor" prefWidth="107.9998779296875" text="VALOR" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>

@@ -57,11 +57,11 @@ public class CaixaControllerView implements Initializable{
     public void verificaEntradasItem(){
         TVCidItem.setCellValueFactory(new PropertyValueFactory<>("idItem"));
         TVCQtd.setCellValueFactory(new PropertyValueFactory<>("qtdDesejada"));
-        ItemModel es = new ItemModel("00",00);
+        ItemModel es = new ItemModel(00,00);
         CaixaController.findItem(es, listaItensTV);
         try{
             if(tfCodigoProduto.getText() != null && tfQtd.getText() != null){
-                ItemModel b = new ItemModel(tfCodigoProduto.getText(),
+                ItemModel b = new ItemModel(Integer.parseInt(tfCodigoProduto.getText()),
                                             Integer.parseInt(tfQtd.getText()));
                 System.out.println(b.getIdItem()+" "+b.getQtdDesejada());
                 CaixaController.somaItemCaixa(b, listaItensTV, compraA);
@@ -83,7 +83,6 @@ public class CaixaControllerView implements Initializable{
     
     public void FecharCaixa(){
         listaItensTV.clear();
-        lblAdicionado.setText("");
         lbTotal.setText("0.0");
         tvItens.setItems(null);
         tfCodigoProduto.setText("");

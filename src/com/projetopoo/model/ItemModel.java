@@ -3,12 +3,22 @@ package com.projetopoo.model;
 import java.io.Serializable;
 
 public class ItemModel extends ProdutoModel implements Serializable{
-    private String idItem;
+    private int idItem;
     private int qtdEstoque;
     private int qtdDesejada;
     private float preco;
+    private String descricao;
+    private String posicaoEstoque;
 
-    public ItemModel(String idItem, int qtdDesejada) {
+    public String getPosicaoEstoque() {
+        return posicaoEstoque;
+    }
+
+    public void setPosicaoEstoque(String posicaoEstoque) {
+        this.posicaoEstoque = posicaoEstoque;
+    }
+
+    public ItemModel(int idItem, int qtdDesejada) {
         super("validade");
         this.qtdEstoque = 0;
         this.preco = 0;
@@ -16,19 +26,36 @@ public class ItemModel extends ProdutoModel implements Serializable{
         this.qtdDesejada = qtdDesejada;
     }
 
+    public ItemModel(int idItem, int qtdEstoque, float preco, String descricao, String validade, String posicaoEstoque) {
+        super(validade);
+        this.idItem = idItem;
+        this.qtdEstoque = qtdEstoque;
+        this.preco = preco;
+        this.descricao = descricao;
+        this.posicaoEstoque = posicaoEstoque;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
     public int getQtdDesejada() {
         return qtdDesejada;
     }
 
     public void setQtdDesejada(int x) {
-        this.qtdDesejada = qtdDesejada;
+        this.qtdDesejada = qtdDesejada;//???
     }
 
-    public String getIdItem() {
+    public int getIdItem() {
         return idItem;
     }
 
-    public void setIdItem(String idItem) {
+    public void setIdItem(int idItem) {
         this.idItem = idItem;
     }
 
