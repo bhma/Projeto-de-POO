@@ -56,8 +56,8 @@ public class AlterarRequisicaoControllerView implements Initializable {
     @FXML
     private DatePicker dpDataDeEntrega;
     
-    ArrayList<RequisicaoModel> requisicao;
-    RequisicaoModel alterarRequisicao;
+    ArrayList<RequisicaoModel> requisicaoList;
+    RequisicaoModel requisicao;
     private ObservableList<RequisicaoModel> observableListTableView;
     
     @Override
@@ -70,18 +70,18 @@ public class AlterarRequisicaoControllerView implements Initializable {
     
     public void recuperarLista(){
         RequisicaoController controller = new RequisicaoController();
-        requisicao = controller.recuperar();
+        requisicaoList = controller.recuperar();
     }
     
     
     public void alterarData(){
-       alterarRequisicao = tbItens.getSelectionModel().getSelectedItem();
-        int tam = requisicao.size(), i;
+       requisicao = tbItens.getSelectionModel().getSelectedItem();
+        int tam = requisicaoList.size(), i;
         if(dpDataDeEntrega.getValue().toString() != null){
             for(i = 0; i < tam; i++){
-                if(requisicao.get(i) == alterarRequisicao){
+                if(requisicaoList.get(i) == requisicao){
                     String data = dpDataDeEntrega.getValue().toString();
-                    requisicao.get(i).setDataDeEntrega(data);
+                    requisicaoList.get(i).setDataDeEntrega(data);
                 }
             }
         }
@@ -89,12 +89,12 @@ public class AlterarRequisicaoControllerView implements Initializable {
     }
     
     public void alterarQtdDesejada(){
-        alterarRequisicao = tbItens.getSelectionModel().getSelectedItem();
-        int tam = requisicao.size(), i;
+        requisicao = tbItens.getSelectionModel().getSelectedItem();
+        int tam = requisicaoList.size(), i;
         if(tfQtd.getText() != null){
             for(i = 0; i < tam; i++){
-                if(requisicao.get(i) == alterarRequisicao){
-                    requisicao.get(i).setQtdDesejada(Integer.parseInt(tfQtd.getText()));
+                if(requisicaoList.get(i) == requisicao){
+                    requisicaoList.get(i).setQtdDesejada(Integer.parseInt(tfQtd.getText()));
                     tfQtd.setText("");
                 }
             }
@@ -107,7 +107,7 @@ public class AlterarRequisicaoControllerView implements Initializable {
     }
     
     public void carregarTableView(){
-        observableListTableView = FXCollections.observableArrayList(requisicao);
+        observableListTableView = FXCollections.observableArrayList(requisicaoList);
         tbItens.setItems(observableListTableView);
         tcNomeItem.setCellValueFactory(new PropertyValueFactory<>("descricao"));
         tcQtdItem.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
@@ -118,19 +118,19 @@ public class AlterarRequisicaoControllerView implements Initializable {
     public void removerItem(){
         RequisicaoModel removerRequisicao = tbItens.getSelectionModel().getSelectedItem();
         tbItens.getItems().remove(removerRequisicao);
-        requisicao.remove(removerRequisicao);
+        requisicaoList.remove(removerRequisicao);
     }
     
 
       public void btCancelar(){
         tfQtd.setText("");
-        requisicao = null;
+        requisicaoList = null;
      
         projetoPOO.trocaTela("estoqueMenu");
         observableListTableView.clear();
     }
     public void btConcluir(){
         RequisicaoController controller = new RequisicaoController();
-        controller.cadastrar(requisicao);
+        controller.atualizarLista(requisicaoList);
     }    
 }

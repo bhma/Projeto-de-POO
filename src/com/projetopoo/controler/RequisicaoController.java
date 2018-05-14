@@ -14,11 +14,10 @@ import java.util.ArrayList;
  * @author Túlio
  */
 public class RequisicaoController {
-    ArrayList<RequisicaoModel> lista= new ArrayList();
     
-    public void cadastrar(ArrayList<RequisicaoModel> lista){
+    public void cadastrar(RequisicaoModel requisicao){
         RequisicaoDAO dao = new RequisicaoDAO();
-        dao.inserir(lista);
+        dao.inserir(requisicao);
     }
     
     public ArrayList<RequisicaoModel> recuperar(){

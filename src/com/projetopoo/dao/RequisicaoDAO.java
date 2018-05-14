@@ -26,13 +26,10 @@ public class RequisicaoDAO {
      ArrayList<RequisicaoModel> list = new ArrayList();
     
     
-    public void inserir(ArrayList<RequisicaoModel> lista){//Inseri um novo funcionario na lista
-      int tam = lista.size(), i;
+    public void inserir(RequisicaoModel requisicao){//Inseri um novo funcionario na lista
       RequisicaoDAO dao = new RequisicaoDAO();
        list = dao.recuperar();//recupera a lista do arquivo
-        for(i = 0; i < tam; i++){
-            list.add(lista.get(i));
-        }
+       list.add(requisicao);
           try{
              FileOutputStream saveFile = new FileOutputStream("CadastroRequisicaoDeCompras.txt");
              ObjectOutputStream stream = new ObjectOutputStream(saveFile);//instancia o objeto de gravação
