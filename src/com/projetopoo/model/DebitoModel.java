@@ -12,6 +12,7 @@ import java.io.Serializable;
  * @author dkaus
  */
 public class DebitoModel implements Serializable {
+    private String id;
     private String descricao;
      private float valor;
     private String data;
@@ -21,6 +22,18 @@ public class DebitoModel implements Serializable {
         this.valor = valor;
         this.data = data;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public DebitoModel() {
+    }
+    
 
     public String getDescricao() {
         return descricao;

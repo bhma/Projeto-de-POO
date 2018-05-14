@@ -10,6 +10,8 @@ import com.projetopoo.controler.DebitoController;
 import com.projetopoo.dao.DebitoDAO;
 import com.projetopoo.model.DebitoModel;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -19,7 +21,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -63,16 +67,22 @@ public class TelaDespesaListarControllerView implements Initializable {
     @FXML
     private TextField tfValor;
     
+    @FXML
+    private Label lblTitulo;
+    
+   
+    
     private ArrayList<DebitoModel> list = new ArrayList<>();
     private ObservableList<DebitoModel> ObservableListDebitos;
      DebitoController debitoController = new DebitoController();
+    
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+      
           this.list = debitoController.recuperarLista();
          carregarTableViewDebitos(this.list);//carrega a tabela com os objetos do a lista
          tableViewDebitos.getSelectionModel().selectedItemProperty().addListener(//utilizado para seleceionar um objeto na lista
@@ -95,32 +105,44 @@ public class TelaDespesaListarControllerView implements Initializable {
             DebitoModel debito = tableViewDebitos.getSelectionModel().getSelectedItem();
             tableViewDebitos.getItems().remove(debito);
             this.list.remove(debito);
+              carregarTableViewDebitos(this.list);
     }
     public void inserirTableViewDebitos(){
          carregarTableViewDebitos(this.list);
     } 
     
-    public void alterarItemTableViewDebitos(){
-          if(tfDescricao.getText() != null && tfValor.getText() != null && dpData.getValue() != null){
-         DebitoModel debito = tableViewDebitos.getSelectionModel().getSelectedItem();
-         tableViewDebitos.getItems().remove(debito);
-         DebitoModel debitoNovo = new DebitoModel(tfDescricao.getText(),Float.parseFloat(tfValor.getText()),dpData.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
-         for(int i =0; i < list.size(); i++){
-             if(debito.getDescricao().equals(list.get(i).getDescricao())){
-                 list.get(i).setDescricao(debitoNovo.getDescricao());
-                  list.get(i).setValor(debitoNovo.getValor());
-                   list.get(i).setData(debitoNovo.getData());
+  
+    
+    public void alterarItemTableViewDebitosDescricao(){//altera se o usuario pressionar enter
+        DebitoModel debito = tableViewDebitos.getSelectionModel().getSelectedItem();
+        for(int i =0; i < list.size(); i++){
+             if(debito.getId().equals(list.get(i).getId())){
+               list.get(i).setDescricao(tfDescricao.getText());
              }
-         }
-         this.ObservableListDebitos.clear();
+        }
         carregarTableViewDebitos(this.list);
-       //  salvarTableViewDebitos();
-        //  startListarDespesas();
-        // carregarTableViewDebitos(this.list);
-           // this.list.remove(debito);
-          }
-        
     }
+    
+    public void alterarItemTableViewDebitosValor(){//altera se o usuario pressionar enter
+        DebitoModel debito = tableViewDebitos.getSelectionModel().getSelectedItem();
+        for(int i =0; i < list.size(); i++){
+             if(debito.getId().equals(list.get(i).getId())){
+               list.get(i).setValor(Float.parseFloat(tfValor.getText()));
+             }
+        }
+        carregarTableViewDebitos(this.list);
+    }
+    
+    public void alterarItemTableViewDebitoData(){//altera se o usuario pressionar enter
+        DebitoModel debito = tableViewDebitos.getSelectionModel().getSelectedItem();
+        for(int i =0; i < list.size(); i++){
+         if(debito.getId().equals(list.get(i).getId())){
+               list.get(i).setData(dpData.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+             }
+        }
+        carregarTableViewDebitos(this.list);
+    }
+    
     
       public void salvarTableViewDebitos(){
             debitoController.salvarAlteracao(list);
@@ -132,9 +154,19 @@ public class TelaDespesaListarControllerView implements Initializable {
              tfDescricao.clear();
              tfValor.clear();
       }
+      public static final LocalDate LOCAL_DATE (String dateString){
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    LocalDate localDate = LocalDate.parse(dateString, formatter);
+    return localDate;
+}
+      
       
     public void selecionarItemTableViewDebitos(DebitoModel debitop){
       //  System.out.println(debitop.getDescricao());
+        tfDescricao.setText(debitop.getDescricao());
+          tfValor.setText(Float.toString(debitop.getValor()));
+          dpData.setValue( LOCAL_DATE(debitop.getData()));
+          
     }
     public void startListarDespesas(){
         MainFluxoDeCaixa.trocaTela("ListarDespesaView");

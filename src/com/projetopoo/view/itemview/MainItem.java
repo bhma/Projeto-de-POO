@@ -24,6 +24,7 @@ public  class  MainItem extends projetoPOO {
      private static Scene itemMenu;
     private static Scene cadastroItemScene;
     private static Scene listarItemScene;
+     private static Scene alterarItemScene;
    
   
     @Override
@@ -38,6 +39,9 @@ public  class  MainItem extends projetoPOO {
         
         Parent fxmlItemListar = FXMLLoader.load(getClass().getResource("FXML.TelaDeItemListar.fxml")); 
         listarItemScene = new Scene(fxmlItemListar);
+        
+         Parent fxmlItemAlterar = FXMLLoader.load(getClass().getResource("FXML.TelaDeItemAlterar.fxml")); 
+       alterarItemScene = new Scene(fxmlItemAlterar);
        
       
          stage.setScene(itemMenu );
@@ -52,7 +56,7 @@ public  class  MainItem extends projetoPOO {
                 break;
             
             case "cadastroItem":      
-       {
+                   {
            try {
                principalItem.start(stage);
            } catch (Exception ex) {
@@ -72,7 +76,16 @@ public  class  MainItem extends projetoPOO {
        }
                  stage.setScene( listarItemScene);
                 break;
-            
+              case "alterarItem":      
+       {
+           try {
+               principalItem.start(stage);
+           } catch (Exception ex) {
+               Logger.getLogger(MainItem.class.getName()).log(Level.SEVERE, null, ex);
+           }
+       }
+       stage.setScene(alterarItemScene);
+        
        
         }
     

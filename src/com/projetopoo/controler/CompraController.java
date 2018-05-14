@@ -50,6 +50,7 @@ public class CompraController {
         CompraDAO cd = new CompraDAO();
         compra.setIdCompra(GeraIdCompra());
         cd.inserir(compra);
+        System.out.println(compra.getItens().get(0).getDescricao());
     
     }
     public static String GeraIdCompra(){
@@ -83,6 +84,28 @@ public class CompraController {
             }
         }
         return null;
+    }
+    
+      
+  public float somarTotalReceitas(String data){
+        float total = 0;
+      CompraDAO dao = new CompraDAO();
+       ArrayList<CompraModel> receita = new ArrayList();
+       receita = dao.restaurarCompra();
+        for(int i = 0; i<receita.size(); i++){
+             if((data.charAt(3) == receita.get(i).getData().charAt(3)) && ((data.charAt(4) == receita.get(i).getData().charAt(4)))){
+                 if((data.charAt(6) == receita.get(i).getData().charAt(6)) && ((data.charAt(6) == receita.get(i).getData().charAt(6)))){
+                     if((data.charAt(7) == receita.get(i).getData().charAt(7)) && ((data.charAt(7) == receita.get(i).getData().charAt(7)))){
+                        if((data.charAt(8) == receita.get(i).getData().charAt(8)) && ((data.charAt(8) == receita.get(i).getData().charAt(8)))){
+                           if((data.charAt(9) == receita.get(i).getData().charAt(9)) && ((data.charAt(9) == receita.get(i).getData().charAt(9)))){
+           total +=(receita.get(i).getValorTot());
+                        }
+                     }
+                 }
+             }
+             }
+        }
+        return total;
     }
  
 }

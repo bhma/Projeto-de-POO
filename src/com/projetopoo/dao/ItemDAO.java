@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,9 +22,7 @@ public class ItemDAO {
     public void inserir(ItemModel item){//Inseri um novo funcionario na lista
         ItemDAO dao = new ItemDAO();
        list = dao.recuperarItem();//recupera a lista do arquivo
-        if(list == null){
-            System.out.println("aiaia");
-        }
+
         list.add(item);
        
           try{

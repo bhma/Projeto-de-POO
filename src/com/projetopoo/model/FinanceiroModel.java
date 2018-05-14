@@ -3,7 +3,7 @@ package com.projetopoo.model;
 import java.io.Serializable;
 
 public class FinanceiroModel implements Serializable{
-    private int qtdFunc;
+ /*   private int qtdFunc;
     private float valorTotMercadoria;
     private boolean compraSolicitada;
     private EstoqueModel e;
@@ -53,6 +53,6 @@ public class FinanceiroModel implements Serializable{
 
     public void registroDeCompras(){
 
-    }
+    }*/
 
 }

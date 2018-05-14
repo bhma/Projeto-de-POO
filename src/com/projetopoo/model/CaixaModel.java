@@ -115,13 +115,13 @@ public class CaixaModel implements Serializable{
         this.setAberto(false);
     }
 
-    public float consultaPreco(int id){
+   /* public float consultaPreco(int id){
         return e.consultaPreco(id);
     }
 
     public void verificaNoEstoque(){
         for (ItemModel s:this.novaCompra.getItens()){
             this.e.removeItemEst(s);
-        }
+        }*/
     }
-}
+

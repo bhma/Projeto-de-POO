@@ -5,14 +5,15 @@ import java.util.ArrayList;
 
 public class FornecedorController { 
     public static ArrayList<FornecedorModel> restaurarFornecedor(){
-        ArrayList<FornecedorModel> c = new ArrayList();// c eh o array de fornecedor
+        ArrayList<FornecedorModel> c;// c eh o array de fornecedor
         FornecedorDAO fd = new FornecedorDAO();//cd onde está chamando os metodos do DAO
         c = fd.recuperar();
         return c;
     }
     
-    public static void removerFornecedor(String id){
-        int tamanho;
+    public static boolean removerFornecedor(String idString){
+        int tamanho, id = Integer.parseInt(idString);
+        FornecedorDAO dao = new FornecedorDAO();
         FornecedorModel fornecedor;
         ArrayList<FornecedorModel> lista;
         lista = restaurarFornecedor();
@@ -20,18 +21,21 @@ public class FornecedorController {
         if(!lista.isEmpty()){
             for(int i = 0; i<tamanho;i++){
                 fornecedor = lista.get(i);                
-                if(id.equals(fornecedor.getIdForn())){
+                if(id == fornecedor.getIdForn()){
                     lista.remove(i);
-                    return;
+                    dao.salvarAlteracao(lista);
+                    return true;
                 }
             }
-        }    
+        } 
+        return false;
     }
     
-    public static void inserirFornecedor (FornecedorModel fornecedor){
+    public static int inserirFornecedor (FornecedorModel fornecedor){
         FornecedorDAO fd = new FornecedorDAO();
         fornecedor.setIdForn(Integer.parseInt(GeraIdFornecedor()));
         fd.inserir(fornecedor);
+        return fornecedor.getIdForn();
     
     }
     
@@ -50,8 +54,8 @@ public class FornecedorController {
         return t;
     }
     
-    public static FornecedorModel ConsultaFornecedor(String id){
-        int tamanho;
+    public static FornecedorModel ConsultaFornecedor(String idString){
+        int tamanho, id = Integer.parseInt(idString);
         FornecedorModel fornecedor;
         ArrayList<FornecedorModel> lista;
         lista= restaurarFornecedor();
@@ -59,12 +63,31 @@ public class FornecedorController {
         if(!lista.isEmpty()){
             for(int i = 0; i<tamanho;i++){
                 fornecedor =lista.get(i);                
-                if(id.equals(fornecedor.getIdForn())){
+                if(id == fornecedor.getIdForn()){
                     return lista.get(i);
                 }
             }
         }
         return null;
+    }
+    
+    public static boolean alterarFornecedor(FornecedorModel fornecedor){
+        int tamanho;
+        ArrayList<FornecedorModel> lista;
+        lista= restaurarFornecedor();
+        FornecedorDAO altera = new FornecedorDAO();
+        tamanho = lista.size();
+        if(!lista.isEmpty()){
+            for(int i = 0; i<tamanho;i++){              
+                if(fornecedor.getIdForn() == lista.get(i).getIdForn()){
+                    lista.get(i).setCnpj(fornecedor.getCnpj());
+                    lista.get(i).setRazaoSocial(fornecedor.getRazaoSocial());
+                    altera.salvarAlteracao(lista);
+                    return true;
+                }
+            }
+        }
+        return false;
     }
     
     /*private static ArrayList<FornecedorModel> fornecedorList = new ArrayList();     

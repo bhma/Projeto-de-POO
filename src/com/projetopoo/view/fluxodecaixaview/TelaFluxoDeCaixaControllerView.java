@@ -71,4 +71,9 @@ public class TelaFluxoDeCaixaControllerView implements Initializable {
         projetoPOO.trocaTela("telaAdmin");
     }
     
+     public void startFaturamento(){
+         MainFluxoDeCaixa.trocaTela("faturamentoView");
+    }
+    
+    
 }

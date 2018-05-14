@@ -81,6 +81,7 @@ public class TelaDeDebitosControllerView implements Initializable {
     
     public void inserirTableViewDebitos(){
           if(tfDescricao.getText() != null && tfValor.getText() != null && dpData.getValue() != null){
+              
         DebitoModel debito = new DebitoModel(tfDescricao.getText(),Float.parseFloat(tfValor.getText()),dpData.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
         list.add(debito);
          carregarTableViewDebitos(this.list);

@@ -8,20 +8,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import com.projetopoo.model.*?>
 
-<AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projetopoo.view.CaixaControllerView">
+<AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projetopoo.view.CaixaControllerView">
    <children>
       <TableView fx:id="tvItens" layoutX="14.0" layoutY="15.0" prefHeight="435.0" prefWidth="465.0">
-        <columns>
-          <TableColumn fx:id="TVCidItem" editable="false" prefWidth="75.0" sortable="false" text="ID Item" />
-          <TableColumn fx:id="TCVDescricao" editable="false" prefWidth="250.0" sortable="false" text="Descrição" />
+         <columns>
+            <TableColumn fx:id="TVCidItem" editable="false" prefWidth="75.0" sortable="false" text="ID Item" />
+            <TableColumn fx:id="TCVDescricao" editable="false" prefWidth="250.0" sortable="false" text="Descrição" />
             <TableColumn fx:id="TVCQtd" editable="false" minWidth="0.0" prefWidth="62.0" sortable="false" text="QTD" />
             <TableColumn fx:id="TVCPreco" editable="false" prefWidth="76.0" sortable="false" text="Preço" />
-        </columns>
-         <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
+         </columns>
       </TableView>
       <Label fx:id="lbTotal" alignment="CENTER" layoutX="593.0" layoutY="16.0" prefHeight="30.0" prefWidth="74.0" text="0,00">
          <font>
@@ -33,9 +29,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <MaskTextField fx:id="tfCodigoProduto" layoutX="14.0" layoutY="473.0" prefHeight="25.0" prefWidth="171.0" promptText="Código do Produto" />
-      <MaskTextField fx:id="tfQtd" layoutX="196.0" layoutY="473.0" prefHeight="25.0" prefWidth="64.0" promptText="QTD" />
-      <Button fx:id="btInserir" layoutX="278.0" layoutY="473.0" mnemonicParsing="false" onAction="#verificaEntradasItem" prefHeight="25.0" prefWidth="142.0" text="INSERIR" />
+      <Button fx:id="btInserir" layoutX="337.0" layoutY="473.0" mnemonicParsing="false" onAction="#verificaEntradasItem" prefHeight="25.0" prefWidth="142.0" text="INSERIR" />
       <Button fx:id="btFcharCaixa" layoutX="513.0" layoutY="473.0" mnemonicParsing="false" onAction="#FecharCaixa" prefHeight="25.0" prefWidth="142.0" text="FECHAR CAIXA" />
       <Button fx:id="btFinalizar" layoutX="513.0" layoutY="271.0" mnemonicParsing="false" onAction="#finalizaCompra" prefHeight="25.0" prefWidth="142.0" text="FINALIZAR COMPRA" />
       <Button fx:id="btConsultar" layoutX="513.0" layoutY="170.0" mnemonicParsing="false" onAction="#ChamaConsultar" text="CONSULTAR PRODUTO" />
@@ -55,5 +49,7 @@
             <Font size="16.0" />
          </font>
       </Label>
+      <TextField fx:id="tfCodigoProduto" layoutX="14.0" layoutY="473.0" promptText="ID PRODUTO" />
+      <TextField fx:id="tfQtd" layoutX="205.0" layoutY="472.0" prefHeight="26.0" prefWidth="84.0" promptText="QTD" />
    </children>
 </AnchorPane>

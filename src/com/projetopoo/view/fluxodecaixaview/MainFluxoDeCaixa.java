@@ -27,6 +27,7 @@ public class MainFluxoDeCaixa extends projetoPOO {
     private static Scene listarDespesaScene;
     private static Scene receitasOpcoesScene;
     private static Scene listarReceitaScene;
+     private static Scene faturamentoScene;
   
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -50,6 +51,9 @@ public class MainFluxoDeCaixa extends projetoPOO {
           
            Parent fxmlListarReceitas = FXMLLoader.load(getClass().getResource("FXML.TelaDeReceitasListar.fxml")); //listar
           listarReceitaScene = new Scene(fxmlListarReceitas);
+          
+            Parent fxmlFaturamento = FXMLLoader.load(getClass().getResource("FXML.TelaFaturamento.fxml")); //listar
+           faturamentoScene   = new Scene(fxmlFaturamento);
    
          stage.setScene(fluxoDeCaixaScene);
            stage.show();
@@ -61,6 +65,9 @@ public class MainFluxoDeCaixa extends projetoPOO {
         switch (scr){
                 case "caixa":
                 stage.setScene(fluxoDeCaixaScene);
+                break;
+                  case "faturamentoView":
+                stage.setScene(faturamentoScene);
                 break;
                 case"DespesasMenuView":
                     stage.setScene(despesaScene);

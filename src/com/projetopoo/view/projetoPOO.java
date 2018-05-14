@@ -1,7 +1,9 @@
 
 package com.projetopoo.view;
 import com.projetopoo.view.fluxodecaixaview.MainFluxoDeCaixa;
+import com.projetopoo.view.forncedorview.MainFornecedor;
 import com.projetopoo.view.itemview.MainItem;
+import com.projetopoo.view.requisicaocompraview.MainRequisicaoDeCompra;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -29,6 +31,8 @@ public class projetoPOO extends Application implements Initializable{
     private static Scene telaTroco;
     private static Scene telaAdmin;
     private static Scene estoqueMenu;
+    private static Scene gerenciadorFuncionario;
+    private static Scene cadastroFuncionario;
     @Override
     public void start(Stage primaryStage) throws Exception {
         stage= primaryStage;
@@ -38,17 +42,20 @@ public class projetoPOO extends Application implements Initializable{
         cadastroScene = new Scene(fxmlCadastro);
         Parent fxmlLoginCaixa = FXMLLoader.load(getClass().getResource("FXML.LoginCaixa.fxml")); 
         loginCaixaScene = new Scene(fxmlLoginCaixa);
-        Parent fxmlCaixa = FXMLLoader.load(getClass().getResource("FXML.Caixa.fxml")); 
+      Parent fxmlCaixa = FXMLLoader.load(getClass().getResource("FXML.CaixaTela.fxml")); 
         caixaScene = new Scene(fxmlCaixa);
         Parent fxmlConsultarProduto = FXMLLoader.load(getClass().getResource("FXML.ConsultarProduto.fxml")); 
         consultarProdutoScene = new Scene(fxmlConsultarProduto);
-        Parent fxmlTelaTroco = FXMLLoader.load(getClass().getResource("FXML.TelaTroco.fxml"));
-        telaTroco = new Scene(fxmlTelaTroco);
+   /*  Parent fxmlTelaTroco = FXMLLoader.load(getClass().getResource("FXML.TelaTroco.fxml"));
+        telaTroco = new Scene(fxmlTelaTroco);*/
         Parent fxmlTelaAdmin = FXMLLoader.load(getClass().getResource("FXML.TelaAdmin.fxml"));
         telaAdmin = new Scene(fxmlTelaAdmin);
-         Parent fxmlTelaEstoque = FXMLLoader.load(getClass().getResource("FXML.EstoqueMenu.fxml"));
+       Parent fxmlTelaEstoque = FXMLLoader.load(getClass().getResource("FXML.EstoqueMenu.fxml"));
        estoqueMenu = new Scene(fxmlTelaEstoque);
-        
+        /*Parent fxmlGerenciadorFuncionario = FXMLLoader.load(getClass().getResource("FXML.GerenciadorFuncionario.fxml"));
+       gerenciadorFuncionario = new Scene(fxmlGerenciadorFuncionario);
+       Parent fxmlCadastroFuncionario = FXMLLoader.load(getClass().getResource("FXML.CadastroFuncionario.fxml"));
+        cadastroFuncionario= new Scene(fxmlCadastroFuncionario);*/
         stage.setScene(principalScene);
         stage.show();
     }
@@ -84,33 +91,57 @@ public class projetoPOO extends Application implements Initializable{
              case "fluxoDeCaixa":
                     MainFluxoDeCaixa fluxoDeCaixa = new MainFluxoDeCaixa();
                      {
-                 try {
-                fluxoDeCaixa.start(stage);
-                  } catch (Exception ex) {
-                Logger.getLogger(projetoPOO.class.getName()).log(Level.SEVERE, null, ex);
-            }
-             }
+                      try {
+                           fluxoDeCaixa.start(stage);
+                      } catch (Exception ex) {
+                                Logger.getLogger(projetoPOO.class.getName()).log(Level.SEVERE, null, ex);
+                              }
+                              }
                      break;
-                     case"ItemMenu":
-                           MainItem menuItem = new MainItem();
+            case"ItemMenu":
+                    MainItem menuItem = new MainItem();
          
-        {
-            try {
-                menuItem.start(stage);
-            } catch (Exception ex) {
-                Logger.getLogger(projetoPOO.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        break;
-        }
-    
+                    {
+                      try {
+                         menuItem.start(stage);
+                       } catch (Exception ex) {
+                            Logger.getLogger(projetoPOO.class.getName()).log(Level.SEVERE, null, ex);
+                       }
+                    }
+                        break;
+           case "menuFornecedor":
+                      MainFornecedor menuFornecedor = new MainFornecedor();
+                      {
+                     try {
+                          menuFornecedor.start(stage);
+                      } catch (Exception ex) {
+                        Logger.getLogger(projetoPOO.class.getName()).log(Level.SEVERE, null, ex);
+                       }
+                       }
+                       break;
+           case "requisicao":
+               MainRequisicaoDeCompra  principalRequisicaoCompra = new  MainRequisicaoDeCompra();
+                  {
+                     try {
+                          principalRequisicaoCompra.start(stage);
+                      } catch (Exception ex) {
+                        Logger.getLogger(projetoPOO.class.getName()).log(Level.SEVERE, null, ex);
+                      }
+                }
+                  break;
+                  
+           case "gerenciadorFuncionario":
+                stage.setScene(gerenciadorFuncionario);
+                break;
+           case "cadastroFuncionario":
+                stage.setScene(cadastroFuncionario);
+                break;
     }
-
+    }
     
     
     
     public static void main(String[] args) {
-        System.out.println("oi");
         launch(args);
         
     }

@@ -27,8 +27,11 @@ public class CaixaControllerView implements Initializable{
     @FXML private TableColumn<?, ?> TVCQtd;
     @FXML private TableColumn<?, ?> TVCPreco;
     @FXML private Label lbTotal;
-    @FXML private MaskTextField tfCodigoProduto;
-    @FXML private MaskTextField tfQtd;
+    @FXML
+    private TextField tfCodigoProduto;
+
+    @FXML
+    private TextField tfQtd;
     @FXML private Button btInserir;
     @FXML private Button btFcharCaixa;
     @FXML private Button btFinalizar;
@@ -37,8 +40,10 @@ public class CaixaControllerView implements Initializable{
     @FXML private Label lbOperador;
     @FXML private Label lblAdicionado;
     
+    private float tot = 0;//??
+    
     CompraModel compraA = new CompraModel(CompraController.GeraIdCompra());
-    private List<ItemModel> listaItensTV = new ArrayList<>();
+    private ArrayList<ItemModel> listaItensTV = new ArrayList<>();
     
     private ObservableList<ItemModel> observableListaItensTV;
     
@@ -49,24 +54,33 @@ public class CaixaControllerView implements Initializable{
             if(e.getCode() == KeyCode.ENTER){
                 verificaEntradasItem();
             }});
-        tfCodigoProduto.setMask("NNNN");
-        tfQtd.setMask("NNN");
+        //tfCodigoProduto.setMask("NNNN");
+      //  tfQtd.setMask("NNN");
     }
    
     @FXML
     public void verificaEntradasItem(){
         TVCidItem.setCellValueFactory(new PropertyValueFactory<>("idItem"));
         TVCQtd.setCellValueFactory(new PropertyValueFactory<>("qtdDesejada"));
-        ItemModel es = new ItemModel(00,00);
-        CaixaController.findItem(es, listaItensTV);
+        TVCPreco.setCellValueFactory(new PropertyValueFactory("preco"));
+        TCVDescricao.setCellValueFactory(new PropertyValueFactory("descricao"));
+        ItemController itemCon = new ItemController();
         try{
             if(tfCodigoProduto.getText() != null && tfQtd.getText() != null){
-                ItemModel b = new ItemModel(Integer.parseInt(tfCodigoProduto.getText()),
+                ItemModel b = new ItemModel(tfCodigoProduto.getText(),
                                             Integer.parseInt(tfQtd.getText()));
                 System.out.println(b.getIdItem()+" "+b.getQtdDesejada());
-                CaixaController.somaItemCaixa(b, listaItensTV, compraA);
+                if(itemCon.consultarItem(tfCodigoProduto.getText()).getIdItem().equals(b.getIdItem())){
+                    b.setPreco(itemCon.consultarItem(tfCodigoProduto.getText()).getPreco());
+                    b.setDescricao(itemCon.consultarItem(tfCodigoProduto.getText()).getDescricao());
+                    CaixaController.somaItemCaixa(b, listaItensTV, compraA);
+                }else{
+                    lblAdicionado.setText("Acabou o Estoque!");
+                }
+                tot = calculaTot(listaItensTV);
+                lbTotal.setText(Float.toString(tot));
                 lblAdicionado.setText("Item Adicionado!");    
-                refresh();
+                refresh(tot);
             }
         }catch(NumberFormatException e){
             lblAdicionado.setText("Campo Vazio!");
@@ -83,7 +97,7 @@ public class CaixaControllerView implements Initializable{
     
     public void FecharCaixa(){
         listaItensTV.clear();
-        lbTotal.setText("0.0");
+        //lbTotal.setText("0.0");
         tvItens.setItems(null);
         tfCodigoProduto.setText("");
         tfQtd.setText("");
@@ -100,18 +114,20 @@ public class CaixaControllerView implements Initializable{
     public void removerItemCaixa(){
         ItemModel itemRe = tvItens.getSelectionModel().getSelectedItem();
         if(itemRe != null){
-            CaixaController.removerItemCaixaController(itemRe, compraA);
+            //CaixaController.removerItemCaixaController(itemRe, compraA);
+            tot -= (itemRe.getQtdDesejada() * itemRe.getPreco());
             tvItens.getItems().remove(itemRe);
             listaItensTV.remove(itemRe);
-            refresh();
+            refresh(tot);
         }
     }
     
-    public void refresh(){
+    public void refresh(float tot){
         String s;
         this.compraA.setItens(listaItensTV);
+        this.compraA.setValorTot(tot);
+        lbTotal.setText(Float.toString(tot));
         observableListaItensTV = FXCollections.observableArrayList(listaItensTV);
-        lbTotal.setText(s = Float.toString(compraA.getValorTot()));
         tvItens.setItems(observableListaItensTV);
     }
     public float getValorCompra(){
@@ -121,7 +137,15 @@ public class CaixaControllerView implements Initializable{
     }
     
     public void finalizaCompra(){
-        chamaTelaTroco();
+        //chamaTelaTroco();
         CompraController.inserirCompra(compraA);
+    }
+    
+    public float calculaTot(List<ItemModel> lista){
+        float tot = 0;
+        for(ItemModel s:lista){
+            tot += (s.getPreco() * s.getQtdDesejada());
+        }
+        return tot;
     }
 }

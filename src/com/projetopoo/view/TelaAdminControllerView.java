@@ -47,5 +47,11 @@ public class TelaAdminControllerView implements Initializable {
      public void startEstoque(){
          projetoPOO.trocaTela("estoqueMenu");
     }
+     public void startFornecedor(){
+         projetoPOO.trocaTela("menuFornecedor");
+     }
+    public void startGerenciadoFuncionario(){
+        projetoPOO.trocaTela("gerenciadorFuncionario");
+    }
     
 }

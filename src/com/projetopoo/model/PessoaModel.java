@@ -17,10 +17,10 @@ public abstract class PessoaModel implements Serializable{
     protected String id;
     protected String cpf;
 
-    public PessoaModel(String nome, String tel, String id, String cpf) {
+    public PessoaModel(String nome, String tel, String cpf) {
         this.nome = nome;
         this.tel = tel;
-        this.id = id;
+        this.id = "-1";
         this.cpf = cpf;
     }
 

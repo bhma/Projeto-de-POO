@@ -15,8 +15,12 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
@@ -26,7 +30,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
  */
 public class TelaDeItemListarControllerView implements Initializable {
 
-   
+     @FXML
+    private Button btListar;
+
+    @FXML
+    private TextField tfListar;
+    
     @FXML
     private Button btVoltar;
     
@@ -35,6 +44,10 @@ public class TelaDeItemListarControllerView implements Initializable {
 
     @FXML
     private TableColumn<ItemModel, String> tableColumnDescricao;
+    
+    
+    @FXML
+    private TableColumn<ItemModel, String> tableColumnId;
 
     @FXML
     private TableColumn<ItemModel, String> tableColumnQuantidade;
@@ -44,9 +57,29 @@ public class TelaDeItemListarControllerView implements Initializable {
 
     @FXML
     private TableColumn<ItemModel, String> tableColumnValidade;
+    
+     @FXML
+    private TableColumn<ItemModel, String> tableColumnIdFornecedor;
 
     @FXML
     private TableColumn<ItemModel, String> tableColumnPosicao;
+    
+  @FXML
+    private RadioButton rdId;
+
+    @FXML
+    private RadioButton rdDescricao;
+
+    @FXML
+    private RadioButton rdPosicao;
+
+    @FXML
+    private RadioButton rdFonecedor;
+    
+     @FXML
+     private ToggleGroup categoria;
+   
+
     
     ArrayList<ItemModel> list = new ArrayList<>();
     private ObservableList<ItemModel> ObservableListItens;
@@ -55,21 +88,37 @@ public class TelaDeItemListarControllerView implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        this.list = itemController.recuperarLista();
-       carregarTableViewItens(this.list);
+         tfListar.setEditable(false);
           tableViewItens.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue)  -> selecionarItemTableViewItens(newValue));
     }    
     
+    public void alterarTextField(){
+         RadioButton radio  = (RadioButton) categoria.getSelectedToggle();
+         tfListar.setPromptText(radio.getText());
+          if(radio.isDisabled() == false){
+            tfListar.setEditable(true);
+        }
+    }
+    public void listar(){
+        RadioButton radio  = (RadioButton) categoria.getSelectedToggle();
+        if(tfListar.getText() != null){
+        list = itemController.recuperarListaEspecifica(tfListar.getText(), radio.getText());
+      carregarTableViewItens(list);
+      list.clear();
+        }
+    }
+    
       public void carregarTableViewItens(ArrayList<ItemModel> listp){
+          
         tableColumnDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
         tableColumnValidade.setCellValueFactory(new PropertyValueFactory<>("validade"));
+         tableColumnId.setCellValueFactory(new PropertyValueFactory<>("idItem"));
         tableColumnPreco.setCellValueFactory(new PropertyValueFactory<>("preco"));
         tableColumnQuantidade.setCellValueFactory(new PropertyValueFactory<>("qtdEstoque"));
         tableColumnPosicao.setCellValueFactory(new PropertyValueFactory<>("posicaoEstoque"));
-        ObservableListItens = FXCollections.observableArrayList(listp);
+       ObservableListItens = FXCollections.observableArrayList(listp);
         tableViewItens.setItems(ObservableListItens);
-       
     }
    public void selecionarItemTableViewItens(ItemModel item){
        // System.out.println(debitop.getDescricao());

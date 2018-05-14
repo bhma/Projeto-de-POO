@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EstoqueModel implements Serializable{
-    private List<ItemModel> itensEst;
+   /* private List<ItemModel> itensEst;
     private float valorTotEmEst;
 
     public EstoqueModel(List<ItemModel> itensEst) {
@@ -62,5 +62,5 @@ public class EstoqueModel implements Serializable{
 
     public List<ItemModel> getItensEst() {
         return itensEst;
-    }
+    }*/
 }

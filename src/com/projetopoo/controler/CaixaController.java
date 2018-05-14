@@ -6,6 +6,7 @@
 package com.projetopoo.controler;
 
 import com.projetopoo.model.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,14 +15,14 @@ import java.util.List;
  */
 public class CaixaController {
     
-    public static void somaItemCaixa(ItemModel a, List<ItemModel> itens, CompraModel compraA) {
+    public static void somaItemCaixa(ItemModel a, ArrayList<ItemModel> itens, CompraModel compraA) {
         itens.add(a);    
         compraA.setQtdItenCompra(compraA.getQtdItenCompra() + a.getQtdDesejada());
         compraA.setValorTot(compraA.getValorTot() + (a.getPreco() * a.getQtdDesejada()));
         compraA.setItens(itens);
     }
     
-    public static int findItem(ItemModel a, List<ItemModel> itens) {
+    public static int findItem(ItemModel a, ArrayList<ItemModel> itens) {
         for (ItemModel s : itens) {
             if(s.getIdItem() == a.getIdItem()){
                 return 1;
@@ -29,7 +30,7 @@ public class CaixaController {
         }
         return 0;
     }
-    public static void modificaQtdItem(ItemModel a, List<ItemModel> itens, CompraModel compraA) {
+    public static void modificaQtdItem(ItemModel a, ArrayList<ItemModel> itens, CompraModel compraA) {
         for(ItemModel s:itens){
             if(s.getIdItem() == a.getIdItem()){
                 s.setQtdDesejada(s.getQtdDesejada()+a.getQtdDesejada());

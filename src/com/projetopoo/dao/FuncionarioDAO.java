@@ -28,40 +28,57 @@ public class FuncionarioDAO  {
     
     
     public void cadastrarFuncionario(FuncionarioModel funcionario){//Inseri um novo funcionario na lista
-        FuncionarioDAO dao = new FuncionarioDAO();
-        list = dao.restaurarFuncionario();//recupera a lista do arquivo
+          FuncionarioDAO dao = new FuncionarioDAO();
+       list = dao.recuperarFuncionario();//recupera a lista do arquivo
+
         list.add(funcionario);
+       
           try{
              FileOutputStream saveFile = new FileOutputStream("CadastroFuncionarios.txt");
              ObjectOutputStream stream = new ObjectOutputStream(saveFile);//instancia o objeto de gravação
              stream.writeObject(list);//salva a lista no arquivo
              stream.close();//fecha objeto de gravação
+              
                }catch(FileNotFoundException e){
                 e.printStackTrace();
-         }catch (IOException ex) {
+    }     catch (IOException ex) {
               Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
           }
-    }
-      
-    public ArrayList<FuncionarioModel> restaurarFuncionario(){//Restaura lista
-          try{
+     
+    }    
+    
+    public ArrayList<FuncionarioModel> recuperarFuncionario(){//Restaura lista
+        if(new File("CadastroFuncionarios.txt").canRead() == true){
+        try{
              FileInputStream restFile = new FileInputStream("CadastroFuncionarios.txt");
              ObjectInputStream stream = new ObjectInputStream(restFile);            
              ArrayList<FuncionarioModel> novo = (ArrayList) stream.readObject();
              stream.close();
              for(int i = 0; i < novo.size(); i++){
-                 System.out.println(novo.get(i).getNome());
              }
               return novo;
          }catch(FileNotFoundException e){
-                e.printStackTrace();
-         } catch (IOException ex) {
-              Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-          } catch (ClassNotFoundException ex) {
-              Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-          }
-         return null;
-     }
+                 e.printStackTrace();
+         
+        }   catch (IOException ex) {
+                Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    else{
+            try{
+             FileOutputStream saveFile = new FileOutputStream("CadastroFuncionarios.txt");
+             ObjectOutputStream stream = new ObjectOutputStream(saveFile);//instancia o objeto de gravação
+             stream.close();//fecha objeto de gravação
+        }   catch (FileNotFoundException ex) {
+                Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return list;
+    }
     
     public void salvarAlteracao(ArrayList<FuncionarioModel> listp ){
           try{
@@ -71,8 +88,10 @@ public class FuncionarioDAO  {
              stream.close();//fecha objeto de gravação
                }catch(FileNotFoundException e){
                 e.printStackTrace();
-         }catch (IOException ex) {
+      
+    }     catch (IOException ex) {
               Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
           }
-    }
+}
+
 }

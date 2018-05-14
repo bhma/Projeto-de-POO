@@ -5,15 +5,16 @@ import java.io.Serializable;
 
 public class FuncionarioModel extends PessoaModel implements Serializable {
     private String funcao;
-    private float valorHora;
-    private float hrsTrabalhadas;
-
-    public FuncionarioModel(String funcao, float valorHora, String nome, String tel, String cpf, String id) {
-        super(nome, tel,id, cpf);
+    private float salario;
+    private String senha;
+   
+    public FuncionarioModel(String funcao, String senha, float salario, String nome, String tel, String cpf) {
+        super(nome, tel, cpf);
         
+        this.senha= senha;
         this.funcao = funcao;
-        this.valorHora = valorHora;
-        this.hrsTrabalhadas = 0;
+        this.salario = salario;
+        
     }
 
     public String getFuncao() {
@@ -24,21 +25,15 @@ public class FuncionarioModel extends PessoaModel implements Serializable {
         this.funcao = funcao;
     }
 
-    public float getValorHora() {
-        return valorHora;
+    public float getSalario() {
+        return salario;
     }
 
-    public void setValorHora(float valorHora) {
-        this.valorHora = valorHora;
+    public void setValorHora(float salario) {
+        this.salario = salario;
     }
 
-    public float getHrsTrabalhadas() {
-        return hrsTrabalhadas;
-    }
-
-    public void setHrsTrabalhadas(float hrsTrabalhadas) {
-        this.hrsTrabalhadas = hrsTrabalhadas;
-    }
+    
 
     @Override
     public String getNome() {

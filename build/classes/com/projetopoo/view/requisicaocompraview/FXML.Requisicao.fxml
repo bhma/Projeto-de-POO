@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projetopoo.view.requisicaocompraview.RequisicaoControllerView">
+   <children>
+      <Label layoutX="203.0" layoutY="20.0" text="Requisição de compras">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="btConcluir" layoutX="512.0" layoutY="357.0" mnemonicParsing="false" onAction="#btConcluir" text="CONCLUIR" />
+      <Button fx:id="btRemover" layoutX="430.0" layoutY="357.0" mnemonicParsing="false" onAction="#removerItem" prefHeight="25.0" prefWidth="74.0" text="REMOVER" />
+      <TableView fx:id="tbItens" layoutX="203.0" layoutY="59.0" prefHeight="283.0" prefWidth="380.0">
+        <columns>
+          <TableColumn fx:id="tcNomeItem" prefWidth="238.0" text="Item" />
+            <TableColumn fx:id="tcQtdItem" prefWidth="39.0" text="Qtd" />
+            <TableColumn fx:id="tcDataDeEntrega" prefWidth="101.0" text="Data de entrega" />
+        </columns>
+      </TableView>
+      <Button fx:id="btCancelar" layoutX="345.0" layoutY="357.0" mnemonicParsing="false" onAction="#btCancelar" text="CANCELAR" />
+      <Label layoutX="14.0" layoutY="131.0" text="Quantidade: ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfQtd" layoutX="94.0" layoutY="129.0" prefHeight="25.0" prefWidth="44.0" />
+      <DatePicker fx:id="dpDataDeEntrega" layoutX="12.0" layoutY="201.0" onAction="#selecionarData" promptText="Informe a data" />
+      <Label layoutX="12.0" layoutY="181.0" text="Data de entrega:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="btInserir" layoutX="63.0" layoutY="275.0" mnemonicParsing="false" onAction="#pegarDados" text="INSERIR" />
+      <ComboBox fx:id="cbItens" layoutX="12.0" layoutY="69.0" onAction="#selecionarItem" prefWidth="150.0" promptText="Selecione o item" />
+   </children>
+</AnchorPane>
